@@ -1,0 +1,53 @@
+import fernando from '@/assets/img/avatar.jpg'
+import AnimatedHero from '../components/animatedHero';
+import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+
+export default function Hero() {
+  return (
+    <section className="container min-h-screen flex items-center justify-between flex-wrap gap-8 px-4" id="home">
+        <div className="text-left ">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
+                Olá, sou <br /> Fernando Barbosa
+            </h1>
+            <p className="text-2xl ">
+                Desenvolvedor Front-End
+            </p>
+            <p className="text-lg md:text-xl ">
+                especializado em React e interfaces modernas.
+            </p>
+
+            <div className="flex gap-4 flex-wrap justify-center md:justify-start mt-8">
+
+            <a href="#projetos" className="btn-primary btn">
+                Ver Projetos
+            </a>
+            <a href="#projetos" className="btn btn-outline">
+                Falar comigo
+            </a>
+            </div>
+
+            <div className="mt-8">
+                <ul className="flex gap-2 ">
+                                        <li className="flex items-center gap-1 hover:scale-105 transition-transform"> 
+                                            
+                                            <a href="https://www.linkedin.com/in/febarbosa98/" target="_blank" rel="noreferrer" ><FaLinkedin size={40} /></a></li>
+                                        <li className="flex items-center gap-1 hover:scale-105 transition-transform">
+                                            
+                                            <a href="https://github.com/febarbosa98/" target="_blank" rel="noreferrer" ><FaGithub size={40} /></a></li>
+                                        <li className="flex items-center gap-1 hover:scale-105 transition-transform">
+                                            
+                                            <a href="https://www.instagram.com/febarbosa98" target="_blank" rel="noreferrer" ><FaInstagram size={40} /></a>
+                                        </li>
+                                    </ul>
+            </div>
+        </div>
+        <div className="relative ">
+            <img src={fernando} alt="Fernando Barbosa" className="rounded-full w-96 h-96 object-cover relative z-10" />
+            <div className="absolute -inset-20  w-[150%]" >
+            <AnimatedHero  />
+            </div>
+            
+        </div>
+    </section>
+  );
+}

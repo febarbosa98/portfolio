@@ -1,0 +1,127 @@
+import { useState } from "react";
+import { projetos } from "../data/projetos";
+
+function chunkArray<T>(array: T[], size: number) {
+  const result: T[][] = [];
+
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+
+  return result;
+}
+
+export default function Projetos() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const featured = projetos.find((p) => p.featured);
+  const normalProjects = projetos.filter((p) => !p.featured);
+  const pages = chunkArray(normalProjects, 6);
+  const canGoBack = currentPage > 0;
+  const canGoForward = currentPage < pages.length - 1;
+
+  return (
+    <section id="projetos" className="section container">
+      <h2 className="title glow-border">Meus Projetos</h2>
+      <p className="subtitle mb-6">Aqui estao alguns dos meus projetos mais recentes.</p>
+
+      {featured && (
+        <div className="mb-6">
+          <div className="grid items-center gap-6 rounded-2xl bg-zinc-900 p-6 md:grid-cols-2">
+            <div>
+              <h3 className="mb-2 text-2xl font-bold">{featured.title}</h3>
+
+              <p className="mb-4 text-zinc-400">{featured.description}</p>
+
+              <div className="mb-4 flex flex-wrap gap-2">
+                {featured.techs.map((tech) => (
+                  <span key={tech} className="tag">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex gap-3">
+                <a href={featured.urlSite} target="_blank" rel="noreferrer" className="btn btn-primary">
+                  Ver projeto
+                </a>
+                <a href={featured.urlGit} target="_blank" rel="noreferrer" className="btn btn-outline">
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <img src={featured.image} alt={featured.title} className="rounded-xl" />
+          </div>
+        </div>
+      )}
+
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+          disabled={!canGoBack}
+          className="absolute -left-3 top-1/2 z-10 flex h-11 w-11 -translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          aria-label="Pagina anterior"
+        >
+          {"<"}
+        </button>
+
+        <div className="overflow-hidden">
+          <div
+            className="flex transition-transform duration-500"
+            style={{ transform: `translateX(-${currentPage * 100}%)` }}
+          >
+            {pages.map((page, index) => (
+              <div key={index} className="grid min-w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {page.map((projeto) => (
+                  <div
+                    key={projeto.title}
+                    className="rounded-2xl bg-zinc-900 p-4 transition hover:scale-[1.02]"
+                  >
+                    <img src={projeto.image} alt={projeto.title} className="mb-3 rounded-lg" />
+
+                    <h3 className="text-lg font-semibold">{projeto.title}</h3>
+
+                    <p className="mb-3 text-sm text-zinc-400">{projeto.description}</p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {projeto.techs.map((tech) => (
+                        <span key={tech} className="tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1))}
+          disabled={!canGoForward}
+          className="absolute -right-3 top-1/2 z-10 flex h-11 w-11 translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          aria-label="Proxima pagina"
+        >
+          {">"}
+        </button>
+      </div>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {pages.map((_, index) => (
+          <button
+            key={index}
+            type="button"
+            onClick={() => setCurrentPage(index)}
+            className={`h-3 w-3 rounded-full transition ${
+              currentPage === index ? "scale-125 bg-green-500" : "bg-zinc-600"
+            }`}
+            aria-label={`Ir para pagina ${index + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
