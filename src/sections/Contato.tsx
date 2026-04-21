@@ -94,7 +94,7 @@ export default function Contato() {
               type="email"
               id="email"
                 name="email"
-                placeholder="seuemail@exemplo.com"
+                placeholder="email@exemplo.com"
               className="bg-zinc-800 pl-2 py-1  text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
              <ValidationError 

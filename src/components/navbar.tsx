@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import logo from '@/assets/logofbsemfundo3.png'
+// import logo from '@/assets/logofbsemfundo3.png'
 
 export default function Navbar() {
   const [active, setActive] = useState("home");
@@ -41,12 +41,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-zinc-900 fixed py-4 px-6 md:px-8 top-0  left-0 z-50 border-b border-zinc-700">
-      <div className="container flex items-center justify-between">
+    <nav className={`w-full ${isOpen ? "bg-zinc-900  " : "bg-transparent"} transition-all duration-300 md:bg-zinc-900 fixed py-4 px-6 md:px-8 top-0  left-0 z-50 md:border-b border-zinc-700 `}>
+      <div className="container flex items-center  justify-between">
 
         {/* LOGO */}
         <a href="#home">
-          <img src={logo} alt="Logo" className="w-14 md:w-16" />
+          {/* <img src={logo} alt="Logo" className="w-14 md:w-16" /> */}
         </a>
 
         {/* MENU DESKTOP */}
@@ -65,11 +65,11 @@ export default function Navbar() {
         {/* BOTÃO HAMBÚRGUER */}
         <button
           onClick={handleClick}
-          className="md:hidden flex flex-col gap-1"
+          className="md:hidden flex  flex-col gap-1"
         >
-          <span className={`block w-6 h-[2px] bg-white transition ${isOpen ? "rotate-45 translate-y-[6px]" : ""}`}></span>
-          <span className={`block w-6 h-[2px] bg-white transition ${isOpen ? "opacity-0" : ""}`}></span>
-          <span className={`block w-6 h-[2px] bg-white transition ${isOpen ? "-rotate-45 -translate-y-[6px]" : ""}`}></span>
+          <span className={`block w-6 h-0.5 bg-white transition ${isOpen ? "rotate-45 translate-y-1.5" : ""}`}></span>
+          <span className={`block w-6 h-0.5 bg-white transition ${isOpen ? "opacity-0" : ""}`}></span>
+          <span className={`block w-6 h-0.5 bg-white transition ${isOpen ? "-rotate-45 -translate-y-1.5" : ""}`}></span>
         </button>
       </div>
 

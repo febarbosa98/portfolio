@@ -1,7 +1,4 @@
-import { IoLogoJavascript,   } from "react-icons/io";
-import { SiTypescript ,   } from "react-icons/si";
-import { FaFigma, FaHtml5, FaNodeJs, FaReact } from "react-icons/fa";
-import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
+import {skills} from '../data/skills'
 import fernando from '@/assets/img/fernando2.png'
 
 export default function Sobre(){
@@ -19,7 +16,7 @@ export default function Sobre(){
 
             <p className="mb-4 leading-relaxed text-gray-300">Hoje, minha maior motivação está em transformar ideias em interfaces funcionais, acessíveis e bem construídas, contribuindo com projetos que impactem positivamente a vida das pessoas. Estou em busca da minha primeira oportunidade como Desenvolvedor Front-End, pronto para colaborar com times engajados, aprender continuamente e crescer na área de tecnologia.</p>
             </div>
-            <img src={fernando} alt="Fernando Barbosa" className="w-[480px] h-[480px] object-cover rounded-full" />
+            <img src={fernando} alt="Fernando Barbosa" className="w-120 h-120 object-cover rounded-full" />
             </div>
 
 
@@ -28,29 +25,18 @@ export default function Sobre(){
                 <h1 className="title glow-border">Ferramentas & Tecnologias</h1>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
 
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><IoLogoJavascript size={60} />
-<span className="mt-3">JavaScript</span>    
-</div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><SiTypescript size={60}  />
-<span className="mt-3">TypeScript</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaReact size={60} />
-<span className="mt-3">React</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><RiNextjsFill size={60}  />
-<span className="mt-3">Next.js</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaHtml5 size={60}  />
-<span className="mt-3">HTML</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaFigma size={60} />
-<span className="mt-3">Figma</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><RiTailwindCssFill size={60}    />
-<span className="mt-3">Tailwind CSS</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaNodeJs size={60}   />
-<span className="mt-3">Node.js</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaNodeJs size={60}   />
-<span className="mt-3">Node.js</span></div>
-    <div className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition "><FaNodeJs size={60}   />
-<span className="mt-3">Node.js</span></div>
-  </div>
-            </div>
+
+
+
+{skills.map((skill) => (
+                    <div key={skill.name} className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition ">
+                        <skill.icon size={60} title={skill.name} />
+                        <span className="mt-3">{skill.name}</span>
+                    </div>
+                ))}
+
+
+            </div></div>
         </section>
     )
 }
