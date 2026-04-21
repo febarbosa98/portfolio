@@ -1,19 +1,19 @@
 
-import ebc from "@/assets/img/ebc.png";
-import sistemaFloricultura from "@/assets/img/sistemafloricultura.png";
-import smash from "@/assets/img/smash.png";
-import gitUser from "@/assets/img/gituser.png";
-import econverse from "@/assets/img/econverse.png";
-import tirarVisto from "@/assets/img/tirarvisto.png";
-import avanti from "@/assets/img/avanti.png";
-import pet from "@/assets/img/pet.png";
-import jokenpo from "@/assets/img/jokenpo.png";
-import onebitflix from "@/assets/img/onebitflix.png";
-import onebitx from "@/assets/img/onebitx.png";
-import pokedex from "@/assets/img/pokedex.png";
-import jogo from "@/assets/img/jogo.png";
-// import restaurante from "@/assets/img/restaurante.png";
-// import chat from "@/assets/img/chat.png";
+import ebc from "../assets/img/ebc.png";
+import sistemaFloricultura from "../assets/img/sistemafloricultura.png";
+import smash from "../assets/img/smash.png";
+import gitUser from "../assets/img/gituser.png";
+import econverse from "../assets/img/econverse.png";
+import tirarVisto from "../assets/img/tirarvisto.png";
+import avanti from "../assets/img/avanti.png";
+import pet from "../assets/img/pet.png";
+import jokenpo from "../assets/img/jokenpo.png";
+import onebitflix from "../assets/img/onebitflix.png";
+import onebitx from "../assets/img/onebitx.png";
+import pokedex from "../assets/img/pokedex.png";
+import jogo from "../assets/img/jogo.png";
+// import restaurante from "../assets/img/restaurante.png";
+// import chat from "../assets/img/chat.png";
 
 export const projetos = [
       {
