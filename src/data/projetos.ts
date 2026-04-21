@@ -1,10 +1,10 @@
 
 import ebc from "@/assets/img/ebc.png";
-import sistemaFloricultura from "@/assets/img/sistemaFloricultura.png";
+import sistemaFloricultura from "@/assets/img/sistemafloricultura.png";
 import smash from "@/assets/img/smash.png";
-import gitUser from "@/assets/img/gitUser.png";
+import gitUser from "@/assets/img/gituser.png";
 import econverse from "@/assets/img/econverse.png";
-import tirarVisto from "@/assets/img/tirarVisto.png";
+import tirarVisto from "@/assets/img/tirarvisto.png";
 import avanti from "@/assets/img/avanti.png";
 import pet from "@/assets/img/pet.png";
 import jokenpo from "@/assets/img/jokenpo.png";
