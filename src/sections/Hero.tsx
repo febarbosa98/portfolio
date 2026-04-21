@@ -4,8 +4,8 @@ import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 export default function Hero() {
   return (
-    <section className="container min-h-screen flex items-center justify-between flex-wrap gap-8 px-4" id="home">
-        <div className="text-left ">
+    <section className="container min-h-screen flex items-center justify-between flex-wrap gap-8  px-4 overflow-hidden " id="home">
+        <div className="text-left mt-10 md:mt-0 order-2 md:order-1">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 ">
                 Olá, sou <br /> Fernando Barbosa
             </h1>
@@ -41,9 +41,9 @@ export default function Hero() {
                                     </ul>
             </div>
         </div>
-        <div className="relative ">
+        <div className="relative mt-30 md:mt-0 order-1 md:order-2 ">
             <img src={fernando} alt="Fernando Barbosa" className="rounded-full w-96 h-96 object-cover relative z-10" />
-            <div className="absolute -inset-90  w-[280%]" >
+            <div className="absolute -inset-90 -left-130 w-[280%]" >
             <AnimatedHero  />
             </div>
             

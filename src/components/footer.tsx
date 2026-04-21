@@ -1,15 +1,17 @@
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import logo from '@/assets/logofbsemfundo3.png'
 
 export default function Footer() {
     return (
         <footer className="w-full py-4 px-8 bg-transparent text-center border-t border-zinc-800 mt-20 pt-10">
             <div className="flex flex-col  gap-6 md:flex-row md:justify-between container">
-                <div className="text-lg font-bold">
-                    <h2>Fernando Barbosa</h2>
+                <div className="flex flex-col items-start gap-2 text-center md:items-center md:text-left">
+                    <img src={logo} alt="Logo" className="w-25 h-auto object-contain" />
+                    <h2 className="text-lg font-bold">Fernando Barbosa</h2>
                     <p className="text-sm text-gray-400">Desenvolvedor Front-End</p>
                 </div>
                 <div className="text-left">
-                    <h2 className="text-lg font-bold text-green-200 mb-5">Links</h2>
+                    <h2 className="text-lg font-bold text-green-400 mb-5">Links</h2>
                     <ul className="flex flex-col gap-2">
                         <li><a href="#hero" >Início</a></li>
                         <li><a href="#sobre" >Sobre</a></li>
@@ -18,7 +20,7 @@ export default function Footer() {
                     </ul>
                 </div>
                 <div className="text-left">
-                    <h2 className="text-lg font-bold mb-5 text-green-200">Redes Sociais</h2>
+                    <h2 className="text-lg font-bold mb-5 text-green-400">Redes Sociais</h2>
                     <ul className="flex flex-col gap-2">
                         <li className="flex items-center gap-1"> 
                             <FaLinkedin />

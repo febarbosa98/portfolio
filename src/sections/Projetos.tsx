@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { projetos } from "../data/projetos";
 
 function chunkArray<T>(array: T[], size: number) {
@@ -11,12 +11,32 @@ function chunkArray<T>(array: T[], size: number) {
   return result;
 }
 
+
+
 export default function Projetos() {
   const [currentPage, setCurrentPage] = useState(0);
   const featured = projetos.find((p) => p.featured);
   const normalProjects = projetos.filter((p) => !p.featured);
-  const pages = chunkArray(normalProjects, 6);
+  // const pages = chunkArray(normalProjects, 6);
   const canGoBack = currentPage > 0;
+  
+  const getItemsPerPage = () => {
+    if (window.innerWidth < 768) return 1; // mobile
+    return 6; // desktop
+  };
+  
+  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage());
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(getItemsPerPage());
+    };
+    
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  const pages = chunkArray(normalProjects, itemsPerPage);
   const canGoForward = currentPage < pages.length - 1;
 
   return (
@@ -26,8 +46,9 @@ export default function Projetos() {
 
       {featured && (
         <div className="mb-6">
+            <h2>Projeto em Destaque</h2>
           <div className="grid items-center gap-6 rounded-2xl bg-zinc-900 p-6 md:grid-cols-2">
-            <div>
+            <div className="order-2 md:order-1">
               <h3 className="mb-2 text-2xl font-bold">{featured.title}</h3>
 
               <p className="mb-4 text-zinc-400">{featured.description}</p>
@@ -50,21 +71,21 @@ export default function Projetos() {
               </div>
             </div>
 
-            <img src={featured.image} alt={featured.title} className="rounded-xl" />
+            <img src={featured.image} alt={featured.title} className="rounded-xl order-1 md:order-2" />
           </div>
         </div>
       )}
 
       <div className="relative">
-        <button
+        {/* <button
           type="button"
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
           disabled={!canGoBack}
-          className="absolute -left-3 top-1/2 z-10 flex h-11 w-11 -translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          className="absolute hidden -left-3 top-1/2 z-10 md:flex h-11 w-11 -translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
           aria-label="Pagina anterior"
         >
           {"<"}
-        </button>
+        </button> */}
 
         <div className="overflow-hidden">
           <div
@@ -98,18 +119,27 @@ export default function Projetos() {
           </div>
         </div>
 
-        <button
+        {/* <button
           type="button"
           onClick={() => setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1))}
           disabled={!canGoForward}
-          className="absolute -right-3 top-1/2 z-10 flex h-11 w-11 translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          className="absolute -right-3 top-1/2 z-10 hidden md:flex h-11 w-11 translate-x-full -translate-y-1/2 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
           aria-label="Proxima pagina"
         >
           {">"}
-        </button>
+        </button> */}
       </div>
 
-      <div className="mt-6 flex justify-center gap-2">
+      <div className="mt-6 flex justify-center  gap-2">
+         <button
+          type="button"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
+          disabled={!canGoBack}
+          className="flex  h-11 w-11  -translate-x-5 -translate-y-4 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          aria-label="Pagina anterior"
+        >
+          {"<"}
+        </button>
         {pages.map((_, index) => (
           <button
             key={index}
@@ -121,6 +151,16 @@ export default function Projetos() {
             aria-label={`Ir para pagina ${index + 1}`}
           />
         ))}
+
+        <button
+          type="button"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, pages.length - 1))}
+          disabled={!canGoForward}
+          className="flex  h-11 w-11  translate-x-5 -translate-y-4 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
+          aria-label="Proxima pagina"
+        >
+          {">"}
+        </button>
       </div>
     </section>
   );

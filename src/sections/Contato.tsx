@@ -113,7 +113,7 @@ export default function Contato() {
               type="tel"
               id="phone"
                 name="phone"
-                placeholder="(XX) XXXXX-XXXX"
+                placeholder="(11) 91234-5678"
               className="bg-zinc-800 pl-2 py-1 text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
             <ValidationError 
