@@ -1,6 +1,6 @@
 
 import ebc from "../assets/img/ebc.png";
-import sistemaFloricultura from "../assets/img/sistemafloricultura.png";
+import sistemaFloricultura from "../assets/img/sistema.png";
 import smash from "../assets/img/smash.png";
 import gitUser from "../assets/img/gituser.png";
 import econverse from "../assets/img/econverse.png";
