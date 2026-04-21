@@ -8,11 +8,14 @@ export default function Contato() {
   return (
     <section
       id="contato"
-      className="section container grid grid-cols-1 gap-12 md:grid-cols-3 "
-    >
-      <div className=" md:col-span-2">
-        <h2 className="title glow-border ">Contato</h2>
-        <p className="subtitle  mb-2">
+      className="section container "
+      >
+      <h2 className="title glow-border ">Contato</h2>
+      <div className="grid md:grid-cols-2 gap-16 items-start">
+
+      
+      <div className="">
+        <p className="mb-2">
           Quer entrar em contato? Preencha o formulário ou envie um e-mail para
           mim. Estou sempre aberto a novas oportunidades e colaborações!
         </p>
@@ -65,10 +68,10 @@ export default function Contato() {
         
       </div>
 
-      <div className="">
+      <div className="flex justify-center">
         <form
           onSubmit={handleSubmit}
-          className="mt-8 max-w-md bg-zinc-900  p-6 rounded-lg shadow-md flex flex-col gap-4"
+          className="w-full max-w-lg bg-zinc-900 border border-zinc-800 p-6 rounded-lg shadow-md flex flex-col gap-4"
         >
           <div className="flex flex-col gap-2">
             <label htmlFor="name" className="form-label">
@@ -78,7 +81,8 @@ export default function Contato() {
               type="text"
               id="name"
               name="name"
-              className="bg-zinc-800 pl-2 py-1 text-white placeholder:text-green-400 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+              placeholder="Seu nome completo"
+              className="bg-zinc-800 pl-2 py-1 text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
           </div>
 
@@ -90,12 +94,14 @@ export default function Contato() {
               type="email"
               id="email"
                 name="email"
-              className="bg-zinc-800 pl-2 py-1 text-white placeholder:text-green-400 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="seuemail@exemplo.com"
+              className="bg-zinc-800 pl-2 py-1  text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
              <ValidationError 
         prefix="Email" 
         field="email"
         errors={state.errors}
+
       />
           </div>
 
@@ -107,7 +113,8 @@ export default function Contato() {
               type="tel"
               id="phone"
                 name="phone"
-              className="bg-zinc-800 pl-2 py-1 text-white placeholder:text-green-400 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="(XX) XXXXX-XXXX"
+              className="bg-zinc-800 pl-2 py-1 text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
             <ValidationError 
         prefix="Phone" 
@@ -123,7 +130,8 @@ export default function Contato() {
               type="text"
               id="subject"
                 name="subject"
-              className="bg-zinc-800 pl-2 py-1 text-white placeholder:text-green-400 border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+                placeholder="Assunto da mensagem"
+              className="bg-zinc-800 pl-2 py-1 text-white  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
             />
             <ValidationError 
         prefix="Subject" 
@@ -138,7 +146,7 @@ export default function Contato() {
             <textarea
               id="message"
                 name="message"
-              className="bg-zinc-800 pl-2 py-1 text-white placeholder:text-green-500  border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="bg-zinc-800 pl-2 py-1 text-white   border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600"
               rows={4}
               placeholder="Digite sua mensagem..."
             ></textarea>
@@ -158,6 +166,7 @@ export default function Contato() {
             Obrigado por entrar em contato! Responderei o mais breve possível.
           </p>
         )}
+      </div>
       </div>
     </section>
   );

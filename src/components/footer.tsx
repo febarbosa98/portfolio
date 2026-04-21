@@ -2,7 +2,7 @@ import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="w-full py-4 px-8 bg-transparent text-center border-t border-gray-700">
+        <footer className="w-full py-4 px-8 bg-transparent text-center border-t border-zinc-800 mt-20 pt-10">
             <div className="flex flex-col  gap-6 md:flex-row md:justify-between container">
                 <div className="text-lg font-bold">
                     <h2>Fernando Barbosa</h2>

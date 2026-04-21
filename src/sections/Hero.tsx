@@ -43,7 +43,7 @@ export default function Hero() {
         </div>
         <div className="relative ">
             <img src={fernando} alt="Fernando Barbosa" className="rounded-full w-96 h-96 object-cover relative z-10" />
-            <div className="absolute -inset-20  w-[150%]" >
+            <div className="absolute -inset-90  w-[280%]" >
             <AnimatedHero  />
             </div>
             
