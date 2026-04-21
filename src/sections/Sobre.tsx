@@ -2,7 +2,7 @@ import { IoLogoJavascript,   } from "react-icons/io";
 import { SiTypescript ,   } from "react-icons/si";
 import { FaFigma, FaHtml5, FaNodeJs, FaReact } from "react-icons/fa";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
-import fernando from '@/assets/img/avatar.jpg'
+import fernando from '@/assets/img/fernando2.png'
 
 export default function Sobre(){
     return(

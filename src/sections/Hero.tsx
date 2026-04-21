@@ -1,4 +1,4 @@
-import fernando from '@/assets/img/avatar.jpg'
+import fernando from '@/assets/img/avatar2.jpg'
 import AnimatedHero from '../components/animatedHero';
 import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
