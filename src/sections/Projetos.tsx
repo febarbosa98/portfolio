@@ -73,7 +73,7 @@ export default function Projetos() {
               </div>
             </div>
 
-            <img src={featured.image} alt={featured.title} className="rounded-xl order-1 md:order-2" />
+            <img src={featured.image} alt={featured.title} className="rounded-xl order-1 md:order-2 " />
           </div>
         </div>
       )}
@@ -101,11 +101,13 @@ export default function Projetos() {
                     key={projeto.title}
                     className="rounded-2xl bg-zinc-900 p-4 transition hover:scale-[1.02] flex flex-col  justify-between"
                   >
-                    <img src={projeto.image} alt={projeto.title} className="mb-3 rounded-lg" />
+                    <div>
 
-                    <h3 className="text-lg font-semibold">{projeto.title}</h3>
+                    <img src={projeto.image} alt={projeto.title} className="mb-3 rounded-lg max-h-46 w-full" />
 
-                    <p className="mb-3 text-sm text-zinc-400">{projeto.description}</p>
+                    <h3 className="text-lg mb-1 font-semibold">{projeto.title}</h3>
+
+                    <p className="mb-4 text-sm text-zinc-400">{projeto.description}</p>
 
                     <div className="flex flex-wrap gap-2">
                       {projeto.techs.map((tech) => (
@@ -114,7 +116,8 @@ export default function Projetos() {
                         </span>
                       ))}
                     </div>
-                      <div className="flex mt-2 gap-3">
+                      </div>
+                      <div className="flex mt-4 gap-3">
                 <a href={projeto.urlSite} target="_blank" rel="noreferrer" className="btnCard btn-primary">
                   <RiPagesLine /> Ver projeto
                 </a>

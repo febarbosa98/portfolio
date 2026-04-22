@@ -5,7 +5,7 @@ export default function Sobre(){
     return(
         <section id="sobre" className="section container">
             <h2 className="title glow-border ">Sobre mim</h2>
-            <div className="flex flex-col md:flex-row items-center gap-12 mt-8">
+            <div className="flex flex-col lg:flex-row items-center gap-12 ">
             <div className="max-w-3xl ">
 
             <p className="mb-4 leading-relaxed text-gray-300">Olá! Sou o Fernando Barbosa, tenho 27 anos e estou em transição de carreira para a área de Desenvolvimento Web. Atualmente curso Análise e Desenvolvimento de Sistemas na UNINOVE e me especializo em JavaScript, HTML, CSS, TypeScript, React e Next.js, com foco na criação de interfaces modernas, responsivas e com excelente experiência para o usuário.</p>
@@ -30,7 +30,7 @@ export default function Sobre(){
 
 {skills.map((skill) => (
                     <div key={skill.name} className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col items-center gap-2 hover:border-green-500 transition ">
-                        <skill.icon size={60} title={skill.name} />
+                        <skill.icon  className="size-10 md:size-15" title={skill.name} />
                         <span className="mt-3">{skill.name}</span>
                     </div>
                 ))}

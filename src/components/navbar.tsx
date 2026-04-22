@@ -41,13 +41,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`w-full ${isOpen ? "bg-zinc-900  " : "bg-transparent"} transition-all duration-300 md:bg-zinc-900 fixed py-4 px-6 md:px-8 top-0  left-0 z-50 md:border-b border-zinc-700 `}>
-      <div className="container flex items-center  justify-between">
+    <nav className={`w-full ${isOpen ? "bg-zinc-900  " : "bg-transparent"} transition-all duration-300 md:bg-zinc-900 fixed py-4  md:px-8 top-0  left-0 z-50 md:border-b border-zinc-700 `}>
+      <div className="container flex items-center  justify-end">
 
         {/* LOGO */}
-        <a href="#home">
-          {/* <img src={logo} alt="Logo" className="w-14 md:w-16" /> */}
-        </a>
+        
 
         {/* MENU DESKTOP */}
         <div className="hidden md:flex gap-8">
