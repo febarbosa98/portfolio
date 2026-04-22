@@ -68,7 +68,7 @@ export default function Contato() {
         
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-end">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-lg bg-zinc-900 border border-zinc-800 p-6 rounded-lg shadow-md flex flex-col gap-4"

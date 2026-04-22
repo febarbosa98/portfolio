@@ -21,7 +21,7 @@ export const projetos = [
     description:
       "Landing page institucional para uma empresa de serviços terceirizados, desenvolvida com React, TypeScript e Tailwind CSS. O projeto apresenta a marca, destaca os serviços, os diferenciais, e oferece uma área de contato.",
     image: ebc,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "TypeScript", "Tailwind CSS", "Vite" ],
     urlSite: "https://ebcservicos.com/",
     urlGit: "https://github.com/febarbosa98/",
     featured: true,
@@ -31,7 +31,7 @@ export const projetos = [
     description:
       "Sistema de floricultura desenvolvido com React, firebase, TypeScript e Tailwind CSS. O projeto apresenta uma interface moderna e responsiva para gerenciar produtos, vendas, gastos e estoque, com foco na experiência do usuário e na eficiência operacional.",
     image: sistemaFloricultura,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "Firebase", "TypeScript", "Tailwind CSS"],
     urlSite: "https://github.com/febarbosa98/",
     urlGit: "https://github.com/febarbosa98/flor-manager",
     
@@ -41,7 +41,7 @@ export const projetos = [
     description:
       "Landing page institucional para uma hamburgueria, desenvolvida com Next.js, React, TypeScript e Tailwind CSS. O projeto apresenta a marca, destaca os burgers mais pedidos, lista unidades, exibe depoimentos de clientes e oferece uma área de contato.",
     image: smash,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
     urlSite: "https://smash-burger-xi.vercel.app/",
     urlGit: "https://github.com/febarbosa98/smash-burger",
   },
@@ -50,7 +50,7 @@ export const projetos = [
     description:
       "Aplicação desenvolvida com React, Axios e Tailwind CSS para buscar e exibir perfis do GitHub. Mostra informações como nome, bio, localização, seguidores e repositórios, com design responsivo e tratamento de erros.",
     image: gitUser,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "Axios", "Tailwind CSS"],
     urlSite: "https://api-git-one.vercel.app/",
     urlGit: "https://github.com/febarbosa98/api-git",
   },
@@ -59,7 +59,7 @@ export const projetos = [
     description:
       "O projeto foi criado utilizando React com Vite, visando performance e facilidade de manutenção. Toda a interface foi componentizada, separando cada parte em arquivos próprios.",
     image: econverse,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Vite", "Sass"],
     urlSite: "https://econverse-black.vercel.app/",
     urlGit: "https://github.com/febarbosa98/econverse",
   },
@@ -68,7 +68,7 @@ export const projetos = [
     description:
       "Este é um projeto desenvolvido em Next.js com React e TailwindCSS para uma consultoria especializada em vistos. O objetivo é oferecer uma experiência moderna, responsiva e intuitiva para quem deseja contratar serviços de assessoria para obtenção de vistos e passaportes.",
     image: tirarVisto,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "Tailwind CSS"],
     urlSite: "https://tirar-visto.vercel.app/",
     urlGit: "https://github.com/febarbosa98/tirar-visto",
   },
@@ -77,7 +77,7 @@ export const projetos = [
     description:
       "Este é um projeto de página web para a loja Avanti, desenvolvido com HTML, CSS e JavaScript. O objetivo é apresentar produtos, promoções e informações institucionais de forma moderna e responsiva.",
     image: avanti,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["HTML", "CSS", "JavaScript"],
 
     urlSite: "https://avenue-three.vercel.app/",
     urlGit: "https://github.com/febarbosa98/avanti",
@@ -87,7 +87,7 @@ export const projetos = [
     description:
       "Desenvolvido com Next.js, React e TailwindCSS. O objetivo é criar uma plataforma moderna e responsiva para adoção de animais, com foco na experiência do usuário e na apresentação clara das informações.",
     image: pet,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "Tailwind CSS"],
     urlSite: "https://petdev-jet.vercel.app/",
     urlGit: "https://github.com/febarbosa98/petdev",
   },
@@ -96,7 +96,7 @@ export const projetos = [
     description:
       "Projeto interativo desenvolvido em um desafio do Frontend Mentor, focado em manipulação do DOM com JavaScript, layout responsivo com CSS e posicionamento avançado. ",
     image: jokenpo,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["HTML", "CSS", "JavaScript"],
     urlSite: "https://jokenpo-vert.vercel.app/",
     urlGit: "https://github.com/febarbosa98/jokenpo",
   },
@@ -105,7 +105,7 @@ export const projetos = [
     description:
       "um projeto inspirado na Netflix, feito no curso da OneBitcode. É um site de aulas on-line de programação. No Back-end foi utilizado o adminJS ligado ao PostgreSQL. Já no front-end foi utilizado o nextJS.",
     image: onebitflix,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["React", "Next.js", "Node.js", "adminJS", "PostgreSQL"],
     urlSite: "https://onebitflix-front.vercel.app/",
     urlGit: "https://github.com/febarbosa98/onebitflix-front",
   },
@@ -114,7 +114,7 @@ export const projetos = [
     description:
       "OneBitX é um projeto com foco em praticar as matérias no módulo de Bootstrap,nele abortamos a framework do bootstrap,biblioteca de animação aos.js e tambem abordamos a responsividade",
     image: onebitx,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["HTML", "CSS", "Bootstrap"],
     urlSite: "https://obcx.netlify.app/",
     urlGit: "https://github.com/febarbosa98/onebitx",
   },
@@ -123,7 +123,7 @@ export const projetos = [
     description:
       "Uma pokédex simples para encontrar o pokemon pelo nome ou numero, foi feito com HTML, CSS JavaScript.",
     image: pokedex,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["HTML", "CSS", "JavaScript"],
     urlSite: "https://pokedex-psi-drab.vercel.app/",
     urlGit: "https://github.com/febarbosa98/pokedex",
   },
@@ -132,7 +132,7 @@ export const projetos = [
     description:
       "Um jogo da memoria inspirado em rick and morty simples, foi feito com HTML, CSS JavaScript.",
     image: jogo,
-    techs: ["React", "Next.js", "Firebase"],
+    techs: ["HTML", "CSS", "JavaScript"],
     urlSite: "https://jogo-da-memoria-eight-pi.vercel.app/",
     urlGit: "https://github.com/febarbosa98/jogo-da-memoria",
   },

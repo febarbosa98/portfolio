@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { projetos } from "../data/projetos";
+import { FaGithub } from "react-icons/fa";
+import { RiPagesLine } from "react-icons/ri";
 
 function chunkArray<T>(array: T[], size: number) {
   const result: T[][] = [];
@@ -46,7 +48,7 @@ export default function Projetos() {
 
       {featured && (
         <div className="mb-6">
-            <h2>Projeto em Destaque</h2>
+            <h2 className="text-2xl font-bold mb-3">Projeto em Destaque</h2>
           <div className="grid items-center gap-6 rounded-2xl bg-zinc-900 p-6 md:grid-cols-2">
             <div className="order-2 md:order-1">
               <h3 className="mb-2 text-2xl font-bold">{featured.title}</h3>
@@ -62,11 +64,11 @@ export default function Projetos() {
               </div>
 
               <div className="flex gap-3">
-                <a href={featured.urlSite} target="_blank" rel="noreferrer" className="btn btn-primary">
-                  Ver projeto
+                <a href={featured.urlSite} target="_blank" rel="noreferrer" className="btn btn-primary  flex! items-center gap-2">
+                <RiPagesLine />  Ver projeto
                 </a>
-                <a href={featured.urlGit} target="_blank" rel="noreferrer" className="btn btn-outline">
-                  GitHub
+                <a href={featured.urlGit} target="_blank" rel="noreferrer" className="btn btn-outline flex! items-center gap-2">
+                 <FaGithub /> GitHub
                 </a>
               </div>
             </div>
@@ -97,7 +99,7 @@ export default function Projetos() {
                 {page.map((projeto) => (
                   <div
                     key={projeto.title}
-                    className="rounded-2xl bg-zinc-900 p-4 transition hover:scale-[1.02]"
+                    className="rounded-2xl bg-zinc-900 p-4 transition hover:scale-[1.02] flex flex-col  justify-between"
                   >
                     <img src={projeto.image} alt={projeto.title} className="mb-3 rounded-lg" />
 
@@ -112,6 +114,14 @@ export default function Projetos() {
                         </span>
                       ))}
                     </div>
+                      <div className="flex mt-2 gap-3">
+                <a href={projeto.urlSite} target="_blank" rel="noreferrer" className="btnCard btn-primary">
+                  <RiPagesLine /> Ver projeto
+                </a>
+                <a href={projeto.urlGit} target="_blank" rel="noreferrer" className="btnCard btn-outline">
+                  <FaGithub /> GitHub
+                </a>
+              </div>
                   </div>
                 ))}
               </div>
