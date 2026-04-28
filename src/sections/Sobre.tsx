@@ -34,23 +34,23 @@ export default function Sobre() {
           viewport={viewport}
         >
           <motion.p className="mb-4 leading-relaxed text-gray-300" variants={fadeLeft}>
-            Ola! Sou o Fernando Barbosa, tenho 27 anos e estou em transicao de
-            carreira para a area de Desenvolvimento Web. Atualmente curso Analise
+            Olá! Sou o Fernando Barbosa, tenho 27 anos e estou em transição de
+            carreira para a área de Desenvolvimento Web. Atualmente curso Analise
             e Desenvolvimento de Sistemas na UNINOVE e me especializo em
             JavaScript, HTML, CSS, TypeScript, React e Next.js, com foco na
-            criacao de interfaces modernas, responsivas e com excelente
-            experiencia para o usuario.
+            criação de interfaces modernas, responsivas e com excelente
+            experiência para o usuário.
           </motion.p>
           <motion.p className="mb-4 leading-relaxed text-gray-300" variants={fadeLeft}>
             Tenho uma rotina intensa de estudos praticos, desenvolvimento de
-            projetos pessoais e cursos complementares, como a formacao Full Stack
+            projetos pessoais e cursos complementares, como a formação Full Stack
             JavaScript pela OneBit Code. Ao longo dessa jornada, venho aplicando
             conceitos essenciais como versionamento com Git, consumo de APIs REST,
-            componentizacao com React, manipulacao de DOM e estilizacao com CSS
+            componentização com React, manipulação de DOM e estilização com CSS
             moderno.
           </motion.p>
           <motion.p className="mb-4 leading-relaxed text-gray-300" variants={fadeLeft}>
-            Meu foco esta em desenvolver aplicacoes bem estruturadas, com codigo
+            Meu foco esta em desenvolver aplicações bem estruturadas, com codigo
             limpo e escalavel, sempre priorizando a experiencia do usuario e a
             qualidade da interface. Gosto de transformar ideias em solucoes reais,
             construindo projetos que vao alem do visual e entregam valor de
@@ -58,17 +58,17 @@ export default function Sobre() {
           </motion.p>
           <motion.p className="mb-4 leading-relaxed text-gray-300" variants={fadeLeft}>
             Antes de migrar para a tecnologia, tive experiencias profissionais que
-            fortaleceram habilidades como responsabilidade, organizacao, trabalho
-            em equipe e resolucao de problemas, competencias que hoje aplico
+            fortaleceram habilidades como responsabilidade, organização, trabalho
+            em equipe e resolução de problemas, competencias que hoje aplico
             diretamente no meu dia a dia como desenvolvedor.
           </motion.p>
           <motion.p className="mb-4 leading-relaxed text-gray-300" variants={fadeLeft}>
-            Hoje, minha maior motivacao esta em transformar ideias em interfaces
-            funcionais, acessiveis e bem construidas, contribuindo com projetos que
+            Hoje, minha maior motivação esta em transformar ideias em interfaces
+            funcionais, acessíveis e bem construídas, contribuindo com projetos que
             impactem positivamente a vida das pessoas. Estou em busca da minha
             primeira oportunidade como Desenvolvedor Front-End, pronto para
             colaborar com times engajados, aprender continuamente e crescer na
-            area de tecnologia.
+            área de tecnologia.
           </motion.p>
         </motion.div>
 

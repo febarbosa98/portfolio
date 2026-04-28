@@ -45,7 +45,7 @@ export default function Hero() {
       >
         <motion.div variants={fadeLeft}>
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Ola, sou <br /> Fernando Barbosa
+            Olá, sou <br /> Fernando Barbosa
           </h1>
         </motion.div>
 

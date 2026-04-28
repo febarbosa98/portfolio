@@ -17,7 +17,6 @@ import {
 const featuredProject = projetos.find((project) => project.featured);
 const regularProjects = projetos.filter((project) => !project.featured);
 const carouselEase = [0.22, 1, 0.36, 1] as const;
-const easeOut = "easeOut" as const;
 
 function chunkArray<T>(items: T[], size: number) {
   const chunks: T[][] = [];
@@ -80,7 +79,7 @@ export default function Projetos() {
           Meus Projetos
         </motion.h2>
         <motion.p className="subtitle mb-6" variants={fadeLeft}>
-          Aqui estao alguns dos meus projetos mais recentes.
+          Aqui estão alguns dos meus projetos mais recentes.
         </motion.p>
       </motion.div>
 
@@ -131,12 +130,11 @@ export default function Projetos() {
               </div>
             </div>
 
-            <motion.img
+            <img
               src={featuredProject.image}
               alt={featuredProject.title}
               className="rounded-xl order-1 md:order-2"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.25, ease: easeOut }}
+             
             />
           </div>
         </motion.div>

@@ -56,7 +56,7 @@ export default function Contato() {
           <motion.div variants={fadeLeft}>
             <p className="mb-2">
               Quer entrar em contato? Preencha o formulario ou envie um e-mail
-              para mim. Estou sempre aberto a novas oportunidades e colaboracoes!
+              para mim. Estou sempre aberto a novas oportunidades e colaborações!
             </p>
             <a
               href="mailto:contato@febarbosa.xyz"
@@ -71,7 +71,7 @@ export default function Contato() {
             variants={fadeLeft}
           >
             <p className="text-gray-300">
-              Para mais informacoes, acesse meu perfil no LinkedIn ou GitHub para
+              Para mais informações, acesse meu perfil no LinkedIn ou GitHub para
               ver meus projetos e experiencias anteriores. Estou ansioso para
               conectar com voce!
             </p>
