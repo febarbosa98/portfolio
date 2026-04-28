@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { projetos } from "../data/projetos";
 import { FaGithub } from "react-icons/fa";
 import { RiPagesLine } from "react-icons/ri";
+import { motion, useInView } from "motion/react"
 
 function chunkArray<T>(array: T[], size: number) {
   const result: T[][] = [];
@@ -12,6 +13,9 @@ function chunkArray<T>(array: T[], size: number) {
 
   return result;
 }
+
+
+
 
 
 
@@ -41,13 +45,32 @@ export default function Projetos() {
   const pages = chunkArray(normalProjects, itemsPerPage);
   const canGoForward = currentPage < pages.length - 1;
 
+
+  const ref = useRef(null)
+  const cardRef = useRef(null)
+  const isInView = useInView(ref)
+  const isInViewCard = useInView(cardRef)
+
+  console.log("isInView", isInView)
+  console.log("isInViewCard", isInViewCard)
+
   return (
     <section id="projetos" className="section container">
+      <motion.div
+      ref={ref}
+      
+       initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} transition={{ duration: 0.6, delay: 0.2 }}>
+
       <h2 className="title glow-border">Meus Projetos</h2>
       <p className="subtitle mb-6">Aqui estao alguns dos meus projetos mais recentes.</p>
+      </motion.div>
 
       {featured && (
-        <div className="mb-6">
+        <motion.div className="mb-6"
+        ref={ref}
+      
+       initial={{ opacity: 0, x: -50 }} animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }} transition={{ duration: 0.6, delay: 0.2 }}
+        >
             <h2 className="text-2xl font-bold mb-3">Projeto em Destaque</h2>
           <div className="grid items-center gap-6 rounded-2xl bg-zinc-900 p-6 md:grid-cols-2">
             <div className="order-2 md:order-1">
@@ -75,7 +98,7 @@ export default function Projetos() {
 
             <img src={featured.image} alt={featured.title} className="rounded-xl order-1 md:order-2 " />
           </div>
-        </div>
+        </motion.div>
       )}
 
       <div className="relative">
@@ -89,7 +112,11 @@ export default function Projetos() {
           {"<"}
         </button> */}
 
-        <div className="overflow-hidden">
+        <motion.div className="overflow-hidden"
+        ref={cardRef}
+      
+       initial={{ opacity: 0, y: 100 }} animate={isInViewCard ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }} transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div
             className="flex transition-transform duration-500"
             style={{ transform: `translateX(-${currentPage * 100}%)` }}
@@ -130,7 +157,7 @@ export default function Projetos() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* <button
           type="button"
