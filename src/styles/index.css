@@ -18,6 +18,7 @@
   --primary-hover: #00b74c;
   --green-dark: #007c3d;
   --green-soft: #ddfbe8;
+  --selection-text: #171a18;
   --border: #e2e5e2;
   --bg-dark: #101311;
   --card: #191e1a;
@@ -47,7 +48,7 @@
   svg { flex-shrink: 0; }
   :focus-visible { outline: 3px solid var(--green-dark); outline-offset: 5px; }
   .dark-section :focus-visible { outline-color: var(--primary); }
-  ::selection { background: var(--green-soft); color: var(--text); }
+  ::selection { background: var(--green-soft); color: var(--selection-text); }
   :root { scrollbar-color: var(--green-dark) var(--bg); scrollbar-width: thin; }
 }
 

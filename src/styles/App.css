@@ -103,7 +103,7 @@
 .form-field input, .form-field textarea { width: 100%; min-height: 48px; border: 1px solid #566359; border-radius: 7px; background: var(--card); color: var(--text); caret-color: var(--primary); padding: 12px 14px; font-size: 13px; transition: border-color 180ms ease; }
 .form-field textarea { resize: vertical; min-height: 130px; }
 .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); opacity: 1; }
-.form-field input:focus, .form-field textarea:focus { border-color: var(--primary); }
+.form-field input:focus, .form-field textarea:focus { border-color: var(--primary); outline: none; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .honeypot { display: none; }
 .field-error { color: #ffb4ac; font-size: 12px; }
