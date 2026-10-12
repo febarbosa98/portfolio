@@ -181,6 +181,8 @@ export default function Contato() {
                 errors={state.errors}
               />
             </div>
+            {/* honeypot  */}
+            <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
             <motion.button
               type="submit"

@@ -1,5 +1,10 @@
 import fernando from "@/assets/img/avatar2.jpg";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaInstagram, FaLinkedin   } from "react-icons/fa";
+import { GoPeople } from "react-icons/go";
+import { BsFillLightningChargeFill } from "react-icons/bs";
+
+import { IoCodeSlashSharp } from "react-icons/io5";
+import { FiSmartphone  } from "react-icons/fi";
 import { motion } from "motion/react";
 import AnimatedHero from "../components/animatedHero";
 import {
@@ -44,21 +49,22 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div variants={fadeLeft}>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Olá, sou <br /> Fernando Barbosa
+          <h1 className="text-4xl md:text-8xl font-bold mb-4">
+           <span className="text-green-400 text-2xl tracking-wider ">Olá, sou</span> <br /> Fernando <br />
+           <span className="text-green-500">Barbosa</span>
           </h1>
         </motion.div>
 
         <motion.div variants={fadeLeft}>
-          <p className="text-xl md:text-2xl text-green-400 font-semibold">
+          <p className="text-xl md:text-2xl  font-semibold">
             Desenvolvedor Front-End
           </p>
         </motion.div>
 
         <motion.div variants={fadeLeft}>
           <p className="text-lg md:text-xl mt-2 max-w-lg">
-            Transformo ideias em sites bonitos e funcionais. Apaixonado por criar
-            experiencias digitais que encantam usuarios e geram resultados reais.
+            Crio interfaces modernas, responsivas e funcionais, transformando ideias em experiências digitais que fazem a diferença.
+
           </p>
         </motion.div>
 
@@ -121,6 +127,30 @@ export default function Hero() {
           <AnimatedHero />
         </div>
       </motion.div>
+
+      <div className="container absolute bottom-0 flex justify-between w-full px-4 py-2" >
+        <div>
+         <IoCodeSlashSharp size={50} className="bg-green-100 rounded-full text-green-500 p-2" />
+          <p className="text-lg font-bold">Interfaces modernas</p>
+          <p>Codigo limpo e organizado</p>
+        </div>
+        <div>
+          <FiSmartphone size={50} className="bg-green-100 rounded-full text-green-500 p-2" />
+          <p className="text-lg font-bold">Totalmente responsivo</p>
+          <p>Experiencias em todos os dispositivos</p>
+        </div>
+        <div>
+          <BsFillLightningChargeFill  size={50} className="bg-green-100 rounded-full text-green-500 p-2"  />
+
+          <p className="text-lg font-bold">Foco em performance</p>
+          <p>Sites rápidos e eficientes</p>
+        </div>
+        <div>
+          <GoPeople size={50} className="bg-green-100 rounded-full text-green-500 p-2" />
+          <p className="text-lg font-bold">Tecnologia atual</p>
+          <p>Sempre aprendendo e evoluindo</p>
+        </div>
+      </div>
     </section>
   );
 }
