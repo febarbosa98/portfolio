@@ -1,126 +1,73 @@
-'use client'
+import { useEffect, useRef, useState } from 'react'
+import { FiArrowUpRight, FiMenu, FiX } from 'react-icons/fi'
 
-import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { fadeUp, staggerContainer, tapScale } from "../lib/motion";
-
-const sections = ["home", "projetos", "sobre", "contato"] as const;
+const sections = [
+  { id: 'home', label: 'Home' },
+  { id: 'projetos', label: 'Projetos' },
+  { id: 'sobre', label: 'Sobre' },
+  { id: 'contato', label: 'Contato' },
+]
 
 export default function Navbar() {
-  const [active, setActive] = useState<(typeof sections)[number]>("home");
-  const [isOpen, setIsOpen] = useState(false);
+  const [active, setActive] = useState('home')
+  const [isOpen, setIsOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-
-        if (!element) {
-          continue;
-        }
-
-        const { offsetTop, offsetHeight } = element;
-
-        if (
-          scrollPosition >= offsetTop &&
-          scrollPosition < offsetTop + offsetHeight
-        ) {
-          setActive((current) => (current === section ? current : section));
-          break;
-        }
-      }
-    };
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id) })
+    }, { rootMargin: '-15% 0px -60% 0px' })
+    sections.forEach(({ id }) => {
+      const section = document.getElementById(id)
+      if (section) observer.observe(section)
+    })
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
-    const closeMenu = () => setIsOpen(false);
+    const desktop = window.matchMedia('(min-width: 768px)')
+    const closeMenu = () => setIsOpen(false)
+    desktop.addEventListener('change', closeMenu)
+    return () => desktop.removeEventListener('change', closeMenu)
+  }, [])
 
-    window.addEventListener("resize", closeMenu, { passive: true });
-
-    return () => window.removeEventListener("resize", closeMenu);
-  }, []);
-
-  const navClassName = `w-full ${
-    isOpen ? "bg-zinc-900" : "bg-transparent"
-  } transition-all duration-300 md:bg-zinc-900 fixed py-4 md:px-8 top-0 left-0 z-50 md:border-b border-zinc-700`;
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { setIsOpen(false); toggleRef.current?.focus() }
+    }
+    const onPointerDown = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) setIsOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [isOpen])
 
   return (
-    <nav className={navClassName}>
-      <div className="container flex items-center justify-end">
-        <div className="hidden md:flex gap-8">
-          {sections.map((item) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              className={`navhover ${active === item ? "active" : ""}`}
-            >
-              {item.charAt(0).toUpperCase() + item.slice(1)}
-            </a>
+    <header className="site-header" ref={headerRef} onBlur={(event) => {
+      if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false)
+    }}>
+      <div className="container nav-layout">
+        <a className="wordmark" href="#home" aria-label="Fernando Barbosa, início" onClick={() => setIsOpen(false)}>fb<span>.</span></a>
+        <button className="menu-toggle icon-button" ref={toggleRef} type="button" aria-expanded={isOpen} aria-controls="main-navigation" aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'} onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
+        </button>
+        <nav id="main-navigation" className={`main-navigation ${isOpen ? 'is-open' : ''}`} aria-label="Navegação principal">
+          {sections.map(({ id, label }) => (
+            <a key={id} href={`#${id}`} aria-current={active === id ? 'location' : undefined} className={`nav-link ${id === 'contato' ? 'nav-contact' : ''}`} onClick={() => {
+              setActive(id)
+              setIsOpen(false)
+              const target = document.getElementById(id)
+              if (target) { target.tabIndex = -1; target.focus({ preventScroll: true }) }
+            }}>{label}{id === 'contato' && <FiArrowUpRight aria-hidden="true" />}</a>
           ))}
-        </div>
-
-        <motion.button
-          onClick={() => setIsOpen((open) => !open)}
-          className="md:hidden flex flex-col gap-1"
-          aria-expanded={isOpen}
-          aria-label="Abrir menu"
-          whileTap={tapScale}
-        >
-          <span
-            className={`block w-6 h-0.5 bg-white transition ${
-              isOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition ${
-              isOpen ? "opacity-0" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-white transition ${
-              isOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
-          />
-        </motion.button>
+        </nav>
       </div>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            className="md:hidden overflow-hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.div
-              className="flex flex-col gap-4 bg-zinc-900 px-4 pb-4 mt-4"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-            >
-              {sections.map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item}`}
-                  onClick={() => setIsOpen(false)}
-                  className={`navhover ${active === item ? "active" : ""}`}
-                  variants={fadeUp}
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </motion.a>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
-  );
+    </header>
+  )
 }

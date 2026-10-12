@@ -8,7 +8,7 @@ export const viewport = {
 
 export const transitions = {
   smooth: {
-    duration: 0.55,
+    duration: 0.4,
     ease: smoothEase,
   },
   micro: {
@@ -20,7 +20,7 @@ export const transitions = {
 export const fadeUp = {
   hidden: {
     opacity: 0,
-    y: 32,
+    y: 14,
   },
   visible: {
     opacity: 1,

@@ -1,17 +1,17 @@
 
-import ebc from "../assets/img/ebc.png";
-import sistemaFloricultura from "../assets/img/sistema.png";
-import smash from "../assets/img/smash.png";
-import gitUser from "../assets/img/git.png";
-import econverse from "../assets/img/econverse.png";
-import tirarVisto from "../assets/img/tirarvisto.png";
-import avanti from "../assets/img/avanti.png";
-import pet from "../assets/img/pet.png";
-import jokenpo from "../assets/img/jokenpo.png";
-import onebitflix from "../assets/img/onebitflix.png";
-import onebitx from "../assets/img/onebitx.png";
-import pokedex from "../assets/img/pokedex.png";
-import jogo from "../assets/img/jogo.png";
+import ebc from "../assets/img/ebc.webp";
+import sistemaFloricultura from "../assets/img/sistema.webp";
+import smash from "../assets/img/smash.webp";
+import gitUser from "../assets/img/git.webp";
+import econverse from "../assets/img/econverse.webp";
+import tirarVisto from "../assets/img/tirarvisto.webp";
+import avanti from "../assets/img/avanti.webp";
+import pet from "../assets/img/pet.webp";
+import jokenpo from "../assets/img/jokenpo.webp";
+import onebitflix from "../assets/img/onebitflix.webp";
+import onebitx from "../assets/img/onebitx.webp";
+import pokedex from "../assets/img/pokedex.webp";
+import jogo from "../assets/img/jogo.webp";
 // import restaurante from "../assets/img/restaurante.png";
 // import chat from "../assets/img/chat.png";
 

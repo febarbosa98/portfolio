@@ -1,216 +1,58 @@
-import { useForm, ValidationError } from "@formspree/react";
-import { AnimatePresence, motion } from "motion/react";
-import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
-import {
-  fadeLeft,
-  fadeRight,
-  hoverLift,
-  staggerContainer,
-  tapScale,
-  viewport,
-} from "../lib/motion";
-
-const socialLinks = [
-  {
-    href: "https://www.linkedin.com/in/febarbosa98/",
-    label: "LinkedIn",
-    icon: FaLinkedin,
-  },
-  {
-    href: "https://github.com/febarbosa98/",
-    label: "GitHub",
-    icon: FaGithub,
-  },
-  {
-    href: "https://www.instagram.com/febarbosa98",
-    label: "Instagram",
-    icon: FaInstagram,
-  },
-];
-
-const fieldClassName =
-  "bg-zinc-800 pl-2 py-1 rounded-lg text-white border border-green-800 focus:outline-none focus:ring-2 focus:ring-green-600";
-const easeOut = "easeOut" as const;
+import { useForm, ValidationError } from '@formspree/react'
+import { FiArrowUpRight } from 'react-icons/fi'
+import SocialLinks from '../components/SocialLinks'
+import Reveal from '../components/Reveal'
 
 export default function Contato() {
-  const [state, handleSubmit] = useForm("xojykaay");
+  const [state, handleSubmit] = useForm('xojykaay')
 
   return (
-    <section id="contato" className="section container">
-      <motion.div
-        variants={fadeLeft}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-      >
-        <h2 className="title glow-border">Contato</h2>
-      </motion.div>
-
-      <div className="grid md:grid-cols-2 gap-16 items-start">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
-          <motion.div variants={fadeLeft}>
-            <p className="mb-2">
-              Quer entrar em contato? Preencha o formulario ou envie um e-mail
-              para mim. Estou sempre aberto a novas oportunidades e colaborações!
-            </p>
-            <a
-              href="mailto:contato@febarbosa.xyz"
-              className="text-green-400 hover:underline"
-            >
-              contato@febarbosa.xyz
-            </a>
-          </motion.div>
-
-          <motion.div
-            className="mt-10 border-t border-zinc-700 pt-10"
-            variants={fadeLeft}
-          >
-            <p className="text-gray-300">
-              Para mais informações, acesse meu perfil no LinkedIn ou GitHub para
-              ver meus projetos e experiencias anteriores. Estou ansioso para
-              conectar com voce!
-            </p>
-
-            <ul className="mt-6 flex gap-2">
-              {socialLinks.map(({ href, icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-1">
-                  <motion.a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={label}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={tapScale}
-                    transition={{ duration: 0.2, ease: easeOut }}
-                  >
-                    <Icon size={40} />
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </motion.div>
-
-        <div className="flex justify-end">
-          <motion.form
-            onSubmit={handleSubmit}
-            className="w-full max-w-lg bg-zinc-900 border border-zinc-800 p-6 rounded-lg shadow-md flex flex-col gap-4"
-            variants={fadeRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-          >
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="form-label">
-                Nome
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Seu nome completo"
-                className={fieldClassName}
-              />
+    <section id="contato" className="section dark-section contact-section" aria-labelledby="contact-title">
+      <div className="container contact-layout">
+        <Reveal className="contact-copy">
+          <h2 id="contact-title">Uma ideia?<br /><span>Vamos conversar.</span></h2>
+          <p>Estou aberto a novas oportunidades e colaborações. Conte um pouco sobre o que você tem em mente.</p>
+          <a className="contact-email" href="mailto:contato@febarbosa.com.br">contato@febarbosa.com.br <FiArrowUpRight aria-hidden="true" /></a>
+          <div className="contact-social"><p>Você também me encontra por aqui</p><SocialLinks showLabels /></div>
+        </Reveal>
+        <Reveal>
+          <form onSubmit={handleSubmit} className="contact-form" aria-label="Enviar uma mensagem" aria-busy={state.submitting}>
+            <div className="form-field">
+              <label htmlFor="name">Nome <span>(obrigatório)</span></label>
+              <input id="name" name="name" type="text" autoComplete="name" placeholder="Como posso chamar você?" required aria-describedby="name-error" />
+              <div id="name-error" className="field-error"><ValidationError prefix="Nome" field="name" errors={state.errors} /></div>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="form-label">
-                E-mail
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="email@exemplo.com"
-                className={fieldClassName}
-              />
-              <ValidationError prefix="Email" field="email" errors={state.errors} />
+            <div className="form-row">
+              <div className="form-field">
+                <label htmlFor="email">E-mail <span>(obrigatório)</span></label>
+                <input id="email" name="email" type="email" autoComplete="email" placeholder="voce@exemplo.com" required aria-describedby="email-error" />
+                <div id="email-error" className="field-error"><ValidationError prefix="E-mail" field="email" errors={state.errors} /></div>
+              </div>
+              <div className="form-field">
+                <label htmlFor="phone">Telefone <span>(opcional)</span></label>
+                <input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="(11) 91234-5678" aria-describedby="phone-error" />
+                <div id="phone-error" className="field-error"><ValidationError prefix="Telefone" field="phone" errors={state.errors} /></div>
+              </div>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="phone" className="form-label">
-                Telefone
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="(11) 91234-5678"
-                className={fieldClassName}
-              />
-              <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+            <div className="form-field">
+              <label htmlFor="subject">Assunto</label>
+              <input id="subject" name="subject" type="text" placeholder="Sobre o que vamos conversar?" aria-describedby="subject-error" />
+              <div id="subject-error" className="field-error"><ValidationError prefix="Assunto" field="subject" errors={state.errors} /></div>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="subject" className="form-label">
-                Assunto
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Assunto da mensagem"
-                className={fieldClassName}
-              />
-              <ValidationError
-                prefix="Subject"
-                field="subject"
-                errors={state.errors}
-              />
+            <div className="form-field">
+              <label htmlFor="message">Mensagem <span>(obrigatório)</span></label>
+              <textarea id="message" name="message" rows={4} placeholder="Conte um pouco sobre sua ideia ou oportunidade..." required aria-describedby="message-error" />
+              <div id="message-error" className="field-error"><ValidationError prefix="Mensagem" field="message" errors={state.errors} /></div>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="form-label">
-                Mensagem
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                className={fieldClassName}
-                rows={4}
-                placeholder="Digite sua mensagem..."
-              />
-              <ValidationError
-                prefix="Message"
-                field="message"
-                errors={state.errors}
-              />
+            <input type="text" name="_gotcha" className="honeypot" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+            <button type="submit" disabled={state.submitting} className="btn btn-primary">{state.submitting ? 'Enviando...' : 'Enviar mensagem'}<FiArrowUpRight aria-hidden="true" /></button>
+            <div aria-live="polite" aria-atomic="true">
+              {state.succeeded && <p className="form-success" role="status">Mensagem enviada! Obrigado pelo contato. Responderei o mais breve possível.</p>}
+              {state.errors && <div className="field-error" role="alert"><p>Não foi possível enviar. Confira os campos e tente novamente ou entre em contato por e-mail.</p><ValidationError errors={state.errors} /></div>}
             </div>
-            {/* honeypot  */}
-            <input type="text" name="_gotcha" style={{ display: 'none' }} />
-
-            <motion.button
-              type="submit"
-              disabled={state.submitting}
-              className="btn btn-primary cursor-pointer"
-              whileHover={hoverLift}
-              whileTap={tapScale}
-            >
-              {state.submitting ? "Enviando..." : "Enviar mensagem"}
-            </motion.button>
-            <AnimatePresence>
-        {state.succeeded && (
-          <motion.p
-            className="mt-4 text-green-400"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3, ease: easeOut }}
-          >
-            Obrigado por entrar em contato! Responderei o mais breve possivel.
-          </motion.p>
-        )}
-      </AnimatePresence>
-          </motion.form>
-        </div>
+          </form>
+        </Reveal>
       </div>
-
-      
     </section>
-  );
+  )
 }

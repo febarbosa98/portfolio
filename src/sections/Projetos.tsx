@@ -1,262 +1,89 @@
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "motion/react";
-import { FaGithub } from "react-icons/fa";
-import { RiPagesLine } from "react-icons/ri";
-import { projetos } from "../data/projetos";
-import {
-  cardStagger,
-  fadeLeft,
-  fadeUp,
-  hoverLift,
-  scaleIn,
-  staggerContainer,
-  tapScale,
-  viewport,
-} from "../lib/motion";
+import { useEffect, useMemo, useState } from 'react'
+import { FiArrowLeft, FiArrowRight, FiArrowUpRight } from 'react-icons/fi'
+import { FaGithub } from 'react-icons/fa'
+import { projetos } from '../data/projetos'
+import Reveal from '../components/Reveal'
 
-const featuredProject = projetos.find((project) => project.featured);
-const regularProjects = projetos.filter((project) => !project.featured);
-const carouselEase = [0.22, 1, 0.36, 1] as const;
-
-function chunkArray<T>(items: T[], size: number) {
-  const chunks: T[][] = [];
-
-  for (let index = 0; index < items.length; index += size) {
-    chunks.push(items.slice(index, index + size));
-  }
-
-  return chunks;
-}
+const featuredProject = projetos.find((project) => project.featured)
+const regularProjects = projetos.filter((project) => !project.featured)
+type Project = (typeof projetos)[number]
 
 function getItemsPerPage() {
-  if (typeof window === "undefined") {
-    return 6;
-  }
+  if (typeof window === 'undefined') return 6
+  return window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 6
+}
 
-  return window.innerWidth < 768 ? 1 : 6;
+function ProjectLinks({ project, featured = false }: { project: Project; featured?: boolean }) {
+  return <div className="project-links">
+    <a href={project.urlSite} target="_blank" rel="noreferrer" className={featured ? 'btn btn-primary' : 'project-link'} aria-label={`Ver projeto ${project.title} (nova aba)`}>Ver projeto <FiArrowUpRight aria-hidden="true" /></a>
+    <a href={project.urlGit} target="_blank" rel="noreferrer" className={featured ? 'btn btn-outline' : 'project-link project-github'} aria-label={`GitHub de ${project.title} (nova aba)`}><FaGithub aria-hidden="true" /> GitHub</a>
+  </div>
+}
+
+function TechTags({ techs }: { techs: string[] }) {
+  return <ul className="tech-tags" aria-label="Tecnologias">{techs.map((tech) => <li key={tech}>{tech}</li>)}</ul>
 }
 
 export default function Projetos() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(getItemsPerPage);
+  const [pagination, setPagination] = useState(() => ({ page: 0, size: getItemsPerPage() }))
+  const { page: currentPage, size: itemsPerPage } = pagination
 
   useEffect(() => {
     const handleResize = () => {
-      const nextItemsPerPage = getItemsPerPage();
-      const nextPageCount = Math.max(
-        Math.ceil(regularProjects.length / nextItemsPerPage),
-        1,
-      );
+      const next = getItemsPerPage()
+      setPagination((previous) => previous.size === next ? previous : { page: Math.floor(previous.page * previous.size / next), size: next })
+    }
+    window.addEventListener('resize', handleResize, { passive: true })
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-      setItemsPerPage((current) =>
-        current === nextItemsPerPage ? current : nextItemsPerPage,
-      );
-      setCurrentPage((page) => Math.min(page, nextPageCount - 1));
-    };
-
-    window.addEventListener("resize", handleResize, { passive: true });
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const pages = useMemo(
-    () => chunkArray(regularProjects, itemsPerPage),
-    [itemsPerPage],
-  );
-
-  const canGoBack = currentPage > 0;
-  const canGoForward = currentPage < pages.length - 1;
+  const pages = useMemo(() => {
+    const result: Project[][] = []
+    for (let index = 0; index < regularProjects.length; index += itemsPerPage) result.push(regularProjects.slice(index, index + itemsPerPage))
+    return result
+  }, [itemsPerPage])
+  const goToPage = (page: number) => setPagination((previous) => ({ ...previous, page }))
 
   return (
-    <section id="projetos" className="section container">
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
-      >
-        <motion.h2 className="title glow-border" variants={fadeLeft}>
-          Meus Projetos
-        </motion.h2>
-        <motion.p className="subtitle mb-6" variants={fadeLeft}>
-          Aqui estão alguns dos meus projetos mais recentes.
-        </motion.p>
-      </motion.div>
-
-      {featuredProject && (
-        <motion.div
-          className="mb-6"
-          variants={scaleIn}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
-          <h2 className="text-2xl font-bold mb-3">Projeto em Destaque</h2>
-          <div className="grid items-center gap-6 rounded-2xl bg-zinc-900 p-6 md:grid-cols-2">
-            <div className="order-2 md:order-1">
-              <h3 className="mb-2 text-2xl font-bold">{featuredProject.title}</h3>
-
-              <p className="mb-4 text-zinc-400">{featuredProject.description}</p>
-
-              <div className="mb-4 flex flex-wrap gap-2">
-                {featuredProject.techs.map((tech) => (
-                  <span key={tech} className="tag">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex gap-3 flex-wrap">
-                <motion.a
-                  href={featuredProject.urlSite}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-primary flex! items-center gap-2"
-                  whileHover={hoverLift}
-                  whileTap={tapScale}
-                >
-                  <RiPagesLine /> Ver projeto
-                </motion.a>
-                <motion.a
-                  href={featuredProject.urlGit}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-outline flex! items-center gap-2"
-                  whileHover={hoverLift}
-                  whileTap={tapScale}
-                >
-                  <FaGithub /> GitHub
-                </motion.a>
-              </div>
+    <section id="projetos" className="section dark-section projects-section" aria-labelledby="projects-title">
+      <div className="container">
+        <Reveal className="section-heading">
+          <h2 id="projects-title">Ideias que viraram<br /><span>projetos reais.</span></h2>
+          <p>Uma seleção do que venho construindo.<br />Do primeiro conceito à interface em funcionamento.</p>
+        </Reveal>
+        {featuredProject && <Reveal>
+          <article className="featured-project">
+            <div className="featured-image">
+              <img src={featuredProject.image} alt={`Página inicial de ${featuredProject.title}`} loading="lazy" decoding="async" width="1440" height="900" />
             </div>
-
-            <img
-              src={featuredProject.image}
-              alt={featuredProject.title}
-              className="rounded-xl order-1 md:order-2"
-             
-            />
+            <div className="featured-copy">
+              <span className="featured-label">Projeto em destaque</span>
+              <h3>{featuredProject.title}</h3>
+              <p>{featuredProject.description}</p>
+              <TechTags techs={featuredProject.techs} />
+              <ProjectLinks project={featuredProject} featured />
+            </div>
+          </article>
+        </Reveal>}
+        <div className="project-collection" role="region" aria-roledescription="carrossel" aria-label="Mais projetos">
+          <div className="collection-heading"><h3>Explore mais projetos</h3><span>{regularProjects.length} projetos</span></div>
+          <div id="project-page" className="project-grid" key={`${itemsPerPage}-${currentPage}`}>
+            {pages[currentPage]?.map((project) => <article key={project.title} className="project-card">
+              <div className="project-image">
+                <img src={project.image} alt={`Interface de ${project.title}`} width="800" height="500" loading="lazy" decoding="async" />
+              </div>
+              <div className="project-body"><h4>{project.title}</h4><p>{project.description}</p><TechTags techs={project.techs} /><ProjectLinks project={project} /></div>
+            </article>)}
           </div>
-        </motion.div>
-      )}
-
-      <div className="relative">
-        <motion.div
-          className="overflow-hidden"
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
-          <motion.div
-            className="flex"
-            animate={{ x: `-${currentPage * 100}%` }}
-            transition={{ duration: 0.55, ease: carouselEase }}
-          >
-            {pages.map((page, pageIndex) => (
-              <motion.div
-                key={pageIndex}
-                className="grid min-w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-                variants={cardStagger}
-                initial="hidden"
-                animate={currentPage === pageIndex ? "visible" : "hidden"}
-              >
-                {page.map((projeto) => (
-                  <motion.article
-                    key={projeto.title}
-                    className="rounded-2xl bg-zinc-900 p-4 flex flex-col justify-between"
-                    variants={fadeUp}
-                    whileHover={hoverLift}
-                  >
-                    <div>
-                      <img
-                        src={projeto.image}
-                        alt={projeto.title}
-                        className="mb-3 rounded-lg max-h-46 w-full object-cover"
-                      />
-
-                      <h3 className="text-lg mb-1 font-semibold">{projeto.title}</h3>
-
-                      <p className="mb-4 text-sm text-zinc-400">{projeto.description}</p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {projeto.techs.map((tech) => (
-                          <span key={tech} className="tag">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex mt-4 gap-3 flex-wrap">
-                      <motion.a
-                        href={projeto.urlSite}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btnCard btn-primary"
-                        whileHover={hoverLift}
-                        whileTap={tapScale}
-                      >
-                        <RiPagesLine /> Ver projeto
-                      </motion.a>
-                      <motion.a
-                        href={projeto.urlGit}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="btnCard btn-outline"
-                        whileHover={hoverLift}
-                        whileTap={tapScale}
-                      >
-                        <FaGithub /> GitHub
-                      </motion.a>
-                    </div>
-                  </motion.article>
-                ))}
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-      </div>
-
-      <div className="mt-6 flex justify-center gap-2">
-        <motion.button
-          type="button"
-          onClick={() => setCurrentPage((page) => Math.max(page - 1, 0))}
-          disabled={!canGoBack}
-          className="flex h-11 w-11 -translate-x-5 -translate-y-4 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
-          aria-label="Pagina anterior"
-          whileTap={tapScale}
-        >
-          {"<"}
-        </motion.button>
-
-        {pages.map((_, index) => (
-          <motion.button
-            key={index}
-            type="button"
-            onClick={() => setCurrentPage(index)}
-            className={`h-3 w-3 rounded-full transition ${
-              currentPage === index ? "scale-125 bg-green-500" : "bg-zinc-600"
-            }`}
-            aria-label={`Ir para pagina ${index + 1}`}
-            whileHover={{ scale: 1.15 }}
-            whileTap={tapScale}
-          />
-        ))}
-
-        <motion.button
-          type="button"
-          onClick={() =>
-            setCurrentPage((page) => Math.min(page + 1, pages.length - 1))
-          }
-          disabled={!canGoForward}
-          className="flex h-11 w-11 translate-x-5 -translate-y-4 items-center justify-center rounded-full border border-zinc-700 bg-zinc-950/90 text-xl text-white transition hover:border-green-500 hover:text-green-400 disabled:cursor-not-allowed disabled:opacity-30"
-          aria-label="Proxima pagina"
-          whileTap={tapScale}
-        >
-          {">"}
-        </motion.button>
+          <div className="carousel-controls">
+            <p className="carousel-status" role="status" aria-live="polite" aria-atomic="true">Projetos {currentPage * itemsPerPage + 1}–{Math.min((currentPage + 1) * itemsPerPage, regularProjects.length)} de {regularProjects.length}</p>
+            <div className="carousel-pagination">
+              <button className="icon-button" aria-label="Página anterior" aria-controls="project-page" disabled={currentPage === 0} onClick={() => goToPage(currentPage - 1)}><FiArrowLeft aria-hidden="true" /></button>
+              <button className="icon-button" aria-label="Próxima página" aria-controls="project-page" disabled={currentPage === pages.length - 1} onClick={() => goToPage(currentPage + 1)}><FiArrowRight aria-hidden="true" /></button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  );
+  )
 }
